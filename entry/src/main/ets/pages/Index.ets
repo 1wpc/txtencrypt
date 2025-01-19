@@ -23,6 +23,9 @@ struct Index {
           Column(){
             Text("AES")
               .fontSize(50)
+              .onClick(()=>{
+                router.pushUrl({ url: 'pages/Aes' })
+              })
             Divider()
               .strokeWidth(2)
           }

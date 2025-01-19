@@ -1,6 +1,7 @@
 {
   "src": [
     "pages/Index",
-    "pages/Rsa"
+    "pages/Rsa",
+    "pages/Aes"
   ]
 }
