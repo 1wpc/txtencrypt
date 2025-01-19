@@ -81,7 +81,7 @@ struct Aes {
           .height(40);
       }
 
-      TextInput({
+      TextArea({
         placeholder: 'Key'
       })
         .onChange((value: string) => {
@@ -92,7 +92,7 @@ struct Aes {
         .border({ width: 1, color: '#ccc' })
         .padding(10);
 
-      TextInput({
+      TextArea({
         placeholder: this.isEncrypt ? '明文' : '密文'
       })
         .onChange((value: string) => {
@@ -103,7 +103,7 @@ struct Aes {
         .border({ width: 1, color: '#ccc' })
         .padding(10);
 
-      Button("⇄")
+      Button("执行")
         .width(100)
         .height(40)
         .onClick(async () => {

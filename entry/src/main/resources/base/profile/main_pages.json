@@ -2,6 +2,8 @@
   "src": [
     "pages/Index",
     "pages/Rsa",
-    "pages/Aes"
+    "pages/Aes",
+    "pages/GenKey",
+    "pages/Base64"
   ]
 }
