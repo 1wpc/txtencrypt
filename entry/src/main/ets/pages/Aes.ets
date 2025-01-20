@@ -111,7 +111,7 @@ struct Aes {
             if (this.Key.length > 0 && this.cipherText.length > 0) {
               try {
                 let base64 = new util.Base64Helper()
-                let smyKey = genSymKeyByData(new Uint8Array(buffer.from(this.Key).buffer));
+                let smyKey = genSymKeyByData(base64.decodeSync(this.Key));
                 let arr = encryptMessage(smyKey, { data: new Uint8Array(buffer.from(this.cipherText).buffer)}).data
                 this.results = base64.encodeToStringSync(arr)
               } catch (e) {
@@ -121,7 +121,7 @@ struct Aes {
           }else if (this.Key.length > 0 && this.cipherText.length > 0) {
             try {
               let base64 = new util.Base64Helper()
-              let smyKey = genSymKeyByData(new Uint8Array(buffer.from(this.Key).buffer));
+              let smyKey = genSymKeyByData(base64.decodeSync(this.Key));
               let arr =decryptMessage(smyKey, { data: base64.decodeSync(this.cipherText)}).data
               this.results = buffer.from(arr).toString()
             } catch (e) {

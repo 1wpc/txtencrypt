@@ -1,9 +1,38 @@
 import { router } from '@kit.ArkUI';
+import { promptAction } from '@kit.ArkUI'
+import { preferences } from '@kit.ArkData';
+import { common } from '@kit.AbilityKit';
+
+let dataPreferences: preferences.Preferences | null = null;
 
 @Entry
 @Component
 struct Index {
-  @State message: string = 'Hello World';
+  private context = getContext(this) as common.UIAbilityContext;
+
+  aboutToAppear(): void {
+    let options: preferences.Options = { name: 'info' };
+    dataPreferences = preferences.getPreferencesSync(this.context, options);
+    let isFirst: boolean = dataPreferences.hasSync('First');
+    if(!isFirst){
+      promptAction.showDialog({
+        title: '隐私声明',
+        message: '本应用不收集用户任何隐私信息，请放心使用',
+        buttons: [
+          {
+            text: '不同意',
+            color: '#ffe92828'
+          },
+          {
+            text: '同意',
+            color: '#ff379cea'
+          }
+        ]
+      });
+      dataPreferences.putSync('First', false);
+      dataPreferences.flush()
+    }
+  }
 
   build() {
     RelativeContainer() {
