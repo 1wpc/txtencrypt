@@ -4,6 +4,7 @@
     "pages/Rsa",
     "pages/Aes",
     "pages/GenKey",
-    "pages/Base64"
+    "pages/Base64",
+    "pages/KeyData"
   ]
 }

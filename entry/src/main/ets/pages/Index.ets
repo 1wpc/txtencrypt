@@ -17,7 +17,7 @@ struct Index {
     if(!isFirst){
       promptAction.showDialog({
         title: '隐私声明',
-        message: '本应用不收集用户任何隐私信息，请放心使用',
+        message: $r('app.string.policy'),
         buttons: [
           {
             text: '不同意',

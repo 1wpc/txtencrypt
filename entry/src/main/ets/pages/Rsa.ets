@@ -1,5 +1,7 @@
 import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 import { util, buffer } from '@kit.ArkTS';
+import { promptAction } from '@kit.ArkUI';
+import { copyText } from './tools/util';
 
 function encryptMessage(publicKey: cryptoFramework.PubKey, plainText: cryptoFramework.DataBlob) {
   let cipher = cryptoFramework.createCipher('RSA1024|PKCS1');
@@ -102,12 +104,16 @@ struct Rsa {
               }
             }
           }
+          promptAction.showToast({message: '点击文本复制'})
         });
 
       Text(this.results)
         .fontSize(20)
         .fontWeight(FontWeight.Bold)
         .copyOption(CopyOptions.LocalDevice)
+        .onClick(() => {
+          copyText(this.results)
+        })
     }
     .width('100%')
     .height('100%')

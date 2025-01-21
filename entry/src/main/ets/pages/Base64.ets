@@ -1,4 +1,6 @@
 import { util, buffer } from '@kit.ArkTS';
+import { promptAction } from '@kit.ArkUI';
+import { copyText } from './tools/util';
 
 @Entry
 @Component
@@ -54,11 +56,15 @@ struct Base64 {
               }
             }
           }
+          promptAction.showToast({message: '点击文本复制'})
         });
       Text(this.result)
         .fontSize(20)
         .fontWeight(FontWeight.Bold)
-        .copyOption(CopyOptions.LocalDevice);
+        .copyOption(CopyOptions.LocalDevice)
+        .onClick(() => {
+          copyText(this.result)
+        })
     }
     .width('100%')
     .height('100%')

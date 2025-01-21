@@ -1,5 +1,7 @@
 import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 import { buffer, util } from '@kit.ArkTS';
+import { promptAction } from '@kit.ArkUI';
+import { copyText } from './tools/util';
 
 function generateRandom(len: number) {
   let rand = cryptoFramework.createRandom();
@@ -82,7 +84,7 @@ struct Aes {
       }
 
       TextArea({
-        placeholder: 'Key'
+        placeholder: '128bit密钥（base64）'
       })
         .onChange((value: string) => {
           this.Key = value;
@@ -128,12 +130,16 @@ struct Aes {
               console.error(e)
             }
           }
+          promptAction.showToast({message: '点击文本复制'})
         });
 
       Text(this.results)
         .fontSize(20)
         .fontWeight(FontWeight.Bold)
         .copyOption(CopyOptions.LocalDevice)
+        .onClick(() => {
+          copyText(this.results)
+        })
     }
     .width('100%')
     .height('100%')
